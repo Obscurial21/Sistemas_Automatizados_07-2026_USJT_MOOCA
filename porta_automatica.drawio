@@ -1,0 +1,270 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="refactored_porta" name="Diagrama Porta Automática">
+    <mxGraphModel dx="1583" dy="905" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1" value="DIAGRAMA DE FLUXO LÓGICO E AÇÕES DA PORTA AUTOMÁTICA" vertex="1">
+          <mxGeometry height="30" width="700" x="250" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="inicio" parent="1" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=2;" value="Início" vertex="1">
+          <mxGeometry height="40" width="80" x="510" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="monitorar" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=1;" value="MONITORAR ENTRADAS&lt;br&gt;(Sensores de Presença, Obstáculo, Emergência)" vertex="1">
+          <mxGeometry height="50" width="300" x="400" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_inicio_monitorar" edge="1" parent="1" source="inicio" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=1;" target="monitorar">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cond_presenca" parent="1" style="rhombus;whiteSpace=wrap;html=1;strokeWidth=1;" value="Presença&lt;br&gt;Detectada?" vertex="1">
+          <mxGeometry height="80" width="120" x="120" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="cond_falha" parent="1" style="rhombus;whiteSpace=wrap;html=1;strokeWidth=1;" value="Sinal Inválido /&lt;br&gt;Falha de Sensor?" vertex="1">
+          <mxGeometry height="80" width="140" x="480" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="cond_emerg" parent="1" style="rhombus;whiteSpace=wrap;html=1;strokeWidth=1;" value="Comando&lt;br&gt;Prioritário?" vertex="1">
+          <mxGeometry height="80" width="130" x="840" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mon_pres" edge="1" parent="1" source="monitorar" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=0;" target="cond_presenca">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="180" y="165" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_mon_falha" edge="1" parent="1" source="monitorar" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=0;" target="cond_falha">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mon_emerg" edge="1" parent="1" source="monitorar" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=0;" target="cond_emerg">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="905" y="165" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_emerg_nao" edge="1" parent="1" source="cond_emerg" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;" target="cond_falha">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_emerg_nao" connectable="0" parent="e_emerg_nao" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Não" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry" />
+        </mxCell>
+        <mxCell id="e_falha_nao" edge="1" parent="1" source="cond_falha" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;" target="cond_presenca">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_falha_nao" connectable="0" parent="e_falha_nao" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Não" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry" />
+        </mxCell>
+        <mxCell id="e_pres_nao" edge="1" parent="1" source="cond_presenca" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;" target="monitorar">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="50" y="270" />
+              <mxPoint x="50" y="165" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_pres_nao" connectable="0" parent="e_pres_nao" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Não" vertex="1">
+          <mxGeometry relative="1" x="-0.8" as="geometry" />
+        </mxCell>
+        <mxCell id="aval_aut" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="AVALIAR AUTORIZAÇÃO" vertex="1">
+          <mxGeometry height="40" width="150" x="105" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="e_pres_sim" edge="1" parent="1" source="cond_presenca" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="aval_aut">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_pres_sim" connectable="0" parent="e_pres_sim" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Sim" vertex="1">
+          <mxGeometry relative="1" x="-0.3" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_aval" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;spacingLeft=5;fontSize=10;" value="PROCESSAR AVALIAÇÃO DE ACESSO&lt;br&gt;1. Confirmar Credencial/Identificação&lt;br&gt;2. Verificar Horários e Permissões&lt;br&gt;Gerar Comando de Abertura" vertex="1">
+          <mxGeometry height="70" width="230" x="280" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="e_nota_aval" edge="1" parent="1" source="nota_aval" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=none;html=1;entryX=1;entryY=0.5;" target="aval_aut">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmd_abrir" parent="1" style="text;html=1;align=left;verticalAlign=middle;" value="Comandar Motor:&lt;br&gt;&lt;b&gt;Abrir Porta&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="110" x="270" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="e_cmd_abrir" edge="1" parent="1" source="aval_aut" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="cmd_abrir">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aguardar" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Aguardar Passagem e&lt;br&gt;Contar Tempo" vertex="1">
+          <mxGeometry height="40" width="150" x="105" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="e_aval_aguardar" edge="1" parent="1" source="aval_aut" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="aguardar">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cond_area" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="Área Livre?" vertex="1">
+          <mxGeometry height="70" width="120" x="120" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ag_area" edge="1" parent="1" source="aguardar" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="cond_area">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_area_nao" edge="1" parent="1" source="cond_area" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.5;" target="aguardar">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="70" y="555" />
+              <mxPoint x="70" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_area_nao" connectable="0" parent="e_area_nao" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Não" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry" />
+        </mxCell>
+        <mxCell id="fechamento" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="INICIAR FECHAMENTO&lt;br&gt;APÓS ESPERA" vertex="1">
+          <mxGeometry height="40" width="170" x="95" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="e_area_sim" edge="1" parent="1" source="cond_area" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="fechamento">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_area_sim" connectable="0" parent="e_area_sim" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Sim" vertex="1">
+          <mxGeometry relative="1" x="-0.3" as="geometry" />
+        </mxCell>
+        <mxCell id="cmd_fechar" parent="1" style="text;html=1;align=center;verticalAlign=middle;" value="Comandar Motor:&lt;br&gt;&lt;b&gt;Fechar Porta&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="120" x="120" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="e_fech_cmd" edge="1" parent="1" source="fechamento" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="cmd_fechar">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_loop_inicio" edge="1" parent="1" source="cmd_fechar" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0;entryY=0.75;" target="monitorar">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="30" y="720" />
+              <mxPoint x="30" y="150" />
+              <mxPoint x="400" y="150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="obstaculo" parent="1" style="text;html=1;align=center;verticalAlign=middle;" value="&lt;b&gt;OBSTÁCULO&lt;/b&gt;&lt;br&gt;(Barreira interrompida)" vertex="1">
+          <mxGeometry height="40" width="150" x="330" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="e_obst_aguardar" edge="1" parent="1" source="obstaculo" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.5;" target="aguardar">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aval_obst" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="AVALIAR OBSTÁCULO" vertex="1">
+          <mxGeometry height="40" width="140" x="365" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="e_obst_aval" edge="1" parent="1" source="obstaculo" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="aval_obst">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_obst" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;spacingLeft=5;" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;PROCESSAR DETECÇÃO DE OBSTÁCULO&lt;br&gt;1. Confirmar tipo de obstáculo&lt;br&gt;2. Medir tempo de permanência&lt;br&gt;Gerar Comando de Parada e Reabertura&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="250" x="520" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="e_nota_obst" edge="1" parent="1" source="nota_obst" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=none;html=1;" target="aval_obst">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmd_reabrir" parent="1" style="text;html=1;align=center;verticalAlign=middle;" value="Comandar Motor:&lt;br&gt;&lt;b&gt;Parar e Reabrir&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="140" x="365" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="e_aval_reabrir" edge="1" parent="1" source="aval_obst" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="cmd_reabrir">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_reabrir_aguardar" edge="1" parent="1" source="cmd_reabrir" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=1;startArrow=classic;startFill=1;" target="aguardar">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="320" y="620" />
+              <mxPoint x="320" y="490" />
+              <mxPoint x="180" y="490" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="proc_falha" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="PROCESSAR FALHA&lt;br&gt;DE SEGURANÇA" vertex="1">
+          <mxGeometry height="40" width="150" x="475" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="e_falha_sim" edge="1" parent="1" source="cond_falha" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="proc_falha">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_falha_sim" connectable="0" parent="e_falha_sim" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Sim" vertex="1">
+          <mxGeometry relative="1" x="-0.3" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_falha_sensor" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;FALHA DE SENSOR:&lt;br&gt;Sensor inválido&lt;/font&gt;" vertex="1">
+          <mxGeometry height="50" width="130" x="345" y="385" as="geometry" />
+        </mxCell>
+        <mxCell id="e_nota_falha" edge="1" parent="1" source="nota_falha_sensor" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=none;html=1;" target="proc_falha">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nota_rotina_isol" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;align=left;spacingLeft=5;textShadow=0;strokeColor=default;shadow=0;" value="1. Ativar Rotina de Isolação&lt;br&gt;2. Gerar alerta de manutenção&lt;br&gt;Gerar Comando de Trava Aberta" vertex="1">
+          <mxGeometry height="60" width="200" x="640" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="e_nota_rotina" edge="1" parent="1" source="nota_rotina_isol" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=none;html=1;" target="proc_falha">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cmd_manter" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;" value="Comandar Motor:&lt;br&gt;&lt;b&gt;Manter Porta Aberta&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="150" x="475" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="e_proc_manter" edge="1" parent="1" source="proc_falha" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="cmd_manter">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_manter_monitorar" edge="1" parent="1" source="cmd_manter" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0;textShadow=0;labelBorderColor=none;entryDx=0;entryDy=0;" target="monitorar">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="780" y="490" />
+              <mxPoint x="780" y="610" />
+              <mxPoint x="1150.08" y="610" />
+              <mxPoint x="1150.08" y="140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="proc_emerg" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;" value="PROCESSAR EMERGÊNCIA&lt;br&gt;1. Ativar Protocolo de Evacuação&lt;br&gt;2. Interromper operações normais&lt;br&gt;Gerar Comando de Abertura Imediata e Trava" vertex="1">
+          <mxGeometry height="70" width="270" x="860" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="e_emerg_sim" edge="1" parent="1" source="cond_emerg" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="proc_emerg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_emerg_sim" connectable="0" parent="e_emerg_sim" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Sim" vertex="1">
+          <mxGeometry relative="1" x="-0.3" as="geometry" />
+        </mxCell>
+        <mxCell id="cmd_reabrir_tot" parent="1" style="text;html=1;align=center;verticalAlign=middle;" value="Comandar Motor:&lt;br&gt;&lt;b&gt;Parar e Reabrir&lt;br&gt;Totalmente&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="110" x="1030" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="e_emerg_cmd" edge="1" parent="1" source="proc_emerg" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="cmd_reabrir_tot">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="estado_seguro" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="ESTADO SEGURO&lt;br&gt;(Abertura Plena e Manutenção)" vertex="1">
+          <mxGeometry height="40" width="230" x="790" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="e_emerg_estado" edge="1" parent="1" source="proc_emerg" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="estado_seguro">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_loop_emerg" edge="1" parent="1" source="estado_seguro" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=1;entryY=0.75;" target="estado_seguro">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1080" y="500" />
+              <mxPoint x="1080" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl_loop_emerg" connectable="0" parent="e_loop_emerg" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Monitorar&lt;br&gt;Emergência" vertex="1">
+          <mxGeometry relative="1" x="-0.1" as="geometry">
+            <mxPoint x="31" y="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fim" parent="1" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=2;" value="Fim&lt;br&gt;(Intervenção Necessária)" vertex="1">
+          <mxGeometry height="50" width="170" x="910" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="e_estado_fim" edge="1" parent="1" source="estado_seguro" style="edgeStyle=orthogonalEdgeStyle;html=1;" target="fim">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legenda_title" parent="1" style="text;html=1;align=center;verticalAlign=middle;" value="&lt;b&gt;Legenda de Convenções&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="160" x="900" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="leg_entrada_arrow" edge="1" parent="1" style="endArrow=classic;html=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="845" y="720" as="source" />
+            <mxPoint x="890" y="720" as="target" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg_proc_arrow" edge="1" parent="1" style="endArrow=classic;html=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="845" y="750" as="source" />
+            <mxPoint x="890" y="750" as="target" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg_pert_arrow" edge="1" parent="1" style="endArrow=classic;html=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="845" y="785" as="source" />
+            <mxPoint x="890" y="785" as="target" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
